@@ -47,7 +47,7 @@ This folder contains the edited code that typically comes with the "MLOps templa
 
 ![image](https://user-images.githubusercontent.com/57263404/227303809-57ba9e1c-700c-4f6f-b7ab-957b37211b63.png)
 
-2. You will need to Configure a SageMaker Domain to launch Studio from. We will be using the Quick Setup option for this tutorial.
+2. You will need to Configure a SageMaker Domain to launch Studio from. We will be using the Quick Setup option for this module.
 
 ![image](https://user-images.githubusercontent.com/57263404/227303875-3fc83247-7de3-4ca6-965c-c9eebd6cf7a1.png)
 
@@ -114,7 +114,7 @@ Upon successful completion of the pipeline, a model will be created. You access 
 
 SageMaker endpoints are created automatically by your pipeline and are responsible for handling the inference component.
 
-1. Since our model approval condition is set to “manual,” we will have to approve our model manually. When a model is approved, this will invoke a CloudFormation stack that creates a SageMaker model, SageMaker endpoint config, and SageMaker inference endpoint. All of these components can be tracked inside the central SageMaker AWS console. The code responsible for this automation can be found in the model deployment repo we cloned at the beginning of the tutorial.
+1. Since our model approval condition is set to “manual,” we will have to approve our model manually. When a model is approved, this will invoke a CloudFormation stack that creates a SageMaker model, SageMaker endpoint config, and SageMaker inference endpoint. All of these components can be tracked inside the central SageMaker AWS console. The code responsible for this automation can be found in the model deployment repo we cloned at the beginning of the module.
 
 ![image](https://user-images.githubusercontent.com/57263404/227305118-5442a2b9-e4da-494c-b3b8-e159dbe3da6d.png)
 
@@ -129,7 +129,7 @@ Another Good QC point is to check if your Endpoint is marked as “In-Service”
 ## Setting up Lambda Function to Process API Requests
 AWS Lambda functions prevent us from setting up dedicated servers for monitoring requests and executing small pieces of code like formatting and endpoint invocations. There are significant benefits to this, like only paying for the computer when the functions are triggered instead of a dedicated server which will bill us a reserved or on-demand cost.
 
-The steps to build the lambda function for this particular tutorial are discussed in detail in this accompanying article: [Guide to Building AWS Lambda Functions from ECR Images to Manage SageMaker Inference Endpoints](https://medium.com/@eduand-alvarez/guide-to-building-aws-lambda-functions-from-ecr-images-to-manage-sagemaker-inference-endpoints-4980a9b92290).
+The steps to build the lambda function for this particular module are discussed in detail in this accompanying article: [Guide to Building AWS Lambda Functions from ECR Images to Manage SageMaker Inference Endpoints](https://medium.com/@eduand-alvarez/guide-to-building-aws-lambda-functions-from-ecr-images-to-manage-sagemaker-inference-endpoints-4980a9b92290).
 
 ## Building a REST API using API Gateway
 
@@ -167,10 +167,10 @@ Create a new test in Postman, paste the link you created from your REST API, sel
 
 ![image](https://user-images.githubusercontent.com/57263404/227305935-74f81d3d-828d-4abc-9449-2e023f5ecab6.png)
 
-If you’ve completed all of the steps in this tutorial, you should get a “True” response from your API.
+If you’ve completed all of the steps in this module, you should get a “True” response from your API.
 
 ## Conclusion and Discussion
-Congratulations! You have built a custom MLOps pipeline on SageMaker with oneAPI hardware-accelerated libraries. Using the information in this tutorial, you can build end-to-end machine-learning pipelines in SageMaker and leverage hardware-optimized machine-learning libraries like daal4py.
+Congratulations! You have built a custom MLOps pipeline on SageMaker with oneAPI hardware-accelerated libraries. Using the information in this module, you can build end-to-end machine-learning pipelines in SageMaker and leverage hardware-optimized machine-learning libraries like daal4py.
 
 We encourage readers to watch for upcoming workshops and future Intel Cloud Optimization Modules (ICOMs), as leveraging the Intel optimizations in these modules can qualify their applications for an “Accelerated by Intel” badge.
 
