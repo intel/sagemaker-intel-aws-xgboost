@@ -217,7 +217,7 @@ def get_pipeline(
         model_data=step_train.properties.ModelArtifacts.S3ModelArtifacts,
         content_types=["text/csv"],
         response_types=["text/csv"],
-        inference_instances=["ml.t2.medium", "ml.m5.large"],
+        inference_instances=["ml.m5.large"],
         transform_instances=["ml.m5.large"],
         model_package_group_name=model_package_group_name,
         approval_status=model_approval_status,
