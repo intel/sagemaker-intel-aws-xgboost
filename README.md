@@ -4,7 +4,11 @@
 
 # Intel® Cloud Optimization Modules for Amazon SageMaker
 
-SageMaker is a fully managed machine learning service on the AWS cloud. The motivation behind this platform is to make it easy to build robust machine learning pipelines on top of managed AWS cloud services. Unfortunately, the abstractions that lead to its simplicity make it quite difficult to customize. This Optimization Module will explain how you can inject your custom training and inference code into a prebuilt SageMaker pipeline. Our main goal is to enable [Intel AI Analytics Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/ai-analytics-toolkit.html#gs.kjcg0z) accelerated software in SageMaker pipelines.
+SageMaker is a fully managed machine learning service on the AWS cloud. The motivation behind this platform is to make it easy to build robust machine learning pipelines on top of managed AWS cloud services. Unfortunately, the abstractions that lead to its simplicity make it quite difficult to customize. This Optimization Module will explain how you can inject your custom training and inference code into a prebuilt SageMaker pipeline. Our main goal is to enable [Intel AI Analytics Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/ai-analytics-toolkit.html#gs.kjcg0z) accelerated software in SageMaker pipelines.Download the Cheatsheet: [SageMaker_ICOM_CheatSheet.pdf](https://github.com/intel/sagemaker-intel-aws-xgboost/files/11055443/SageMaker_ICOM_CheatSheet.pdf)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/57263404/227336304-4754df6c-afc4-4b55-8042-2d27e8978337.png" />
+</p>
 
 ## Solution Architecture
 
