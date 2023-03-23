@@ -49,17 +49,17 @@ This folder contains the edited code that typically comes with the "MLOps templa
 
 1. Start by navigating to the SageMaker service in AWS and selecting Getting Started from the navigation panel.
 
-![image](https://user-images.githubusercontent.com/57263404/227303809-57ba9e1c-700c-4f6f-b7ab-957b37211b63.png)
+![image](./images/SageMaker_Getting_Started.png)
 
 2. You will need to Configure a SageMaker Domain to launch Studio from. We will be using the Quick Setup option for this module.
 
-![image](https://user-images.githubusercontent.com/57263404/227303875-3fc83247-7de3-4ca6-965c-c9eebd6cf7a1.png)
+![image](./images/Domain_Config.png)
 
 3. Select Studio from the navigation panel and Open a Studio session.
 
 4. In the SageMaker Resources tab, click Create project and select the MLOps template for model building, training, and deployment. This template provides all the code necessary to configure and launch ML lifecycle management services. We will edit various aspects of this template to accommodate our custom training and inference code.
 
-![image](https://user-images.githubusercontent.com/57263404/227304013-13066fed-df09-49ff-843a-a8da4d18d467.png)
+![image](./images/Project_Creation.png)
 
 5. You’ll need to clone the two project repositories. One corresponds to the model building, and the other is for model deployment. CodeCommit will manage the repositories, a version control service similar to GitHub.
 
@@ -82,7 +82,7 @@ print(os.path.join("s3://",default_bucket, prefix, 'data/RawData.csv'))
 
 7. We need to make a few changes to adapt the SageMaker template to our customer churn solution. Our goal with this customer churn model is to predict whether a user will unsubscribe from a service in the future.
 
-![image](https://user-images.githubusercontent.com/57263404/227304452-6da1c9f6-8598-4c09-bd19-10a26830efb9.png)
+![image](./images/File_Structure.png)
 
 Let’s review the main folders and files we will be working with. The adapted version of these scripts can be found in the GitHub Repo. In the interest of time, feel free to copy the code in the repo to update pipeline.py, preprocess.py, evaluate.py, and codebuild-specbuild.yml.
 
@@ -98,19 +98,19 @@ Let’s review the main folders and files we will be working with. The adapted v
 7. Once we finish editing those four files and configuring our custom training/serving image, we can push our changes to our repo. Since our template comes pre-configured with CI/CD, this will automatically execute the pipeline and train a model.
 - Select the GIT tab from the side navigation panel and, select the files you have modified to add to the staging area and commit, then push changes to the remote repository.
 
-![image](https://user-images.githubusercontent.com/57263404/227304754-35c66807-ebe4-4972-b4d2-0ff06579ac34.png)
+![image](./images/GitPanel.png)
 
 - To check if your CI/CD automation has properly triggered the build, you can go to AWS CodeCommit and select build history from the navigation panel. You should see a build run with an “in progress” status.
 
-![image](https://user-images.githubusercontent.com/57263404/227304801-0daf571b-f206-4800-b039-6c059936890d.png)
+![image](./images/CodeCommit.png)
 
 - Go to SageMaker Resources and select your project. From the pipeline tab, you can check the status of pipeline execution; you will find one Succeeded job, which was automatically executed when we cloned the template repos. You should also see a pipeline in Executing status, and you can double-click this to explore more details about your execution.
 
-![image](https://user-images.githubusercontent.com/57263404/227304849-7e0bceb9-f09a-4118-b33f-ed179fe04162.png)
+![image](./images/pipeline_dash.png)
 
 - You can monitor the progress of your pipeline with the visual graph representation. Clicking the nodes opens an execution metadata panel that includes inputs, outputs, and execution logs.
 
-![image](https://user-images.githubusercontent.com/57263404/227304913-22eacb56-b227-43a7-af7a-a1c607c99c5f.png)
+![image](./images/pipeline_graph.png)
 
 Upon successful completion of the pipeline, a model will be created. You access your model inside of the model group project tab.
 
@@ -120,15 +120,15 @@ SageMaker endpoints are created automatically by your pipeline and are responsib
 
 1. Since our model approval condition is set to “manual,” we will have to approve our model manually. When a model is approved, this will invoke a CloudFormation stack that creates a SageMaker model, SageMaker endpoint config, and SageMaker inference endpoint. All of these components can be tracked inside the central SageMaker AWS console. The code responsible for this automation can be found in the model deployment repo we cloned at the beginning of the module.
 
-![image](https://user-images.githubusercontent.com/57263404/227305118-5442a2b9-e4da-494c-b3b8-e159dbe3da6d.png)
+![image](./images/model_approval.png)
 
 2. Check the status of your endpoint build in the sagemaker. Navigate to SageMaker Inference and select Endpoints. You can select View Logs to review event data from your endpoint on CloudWatch. 
 
-![image](https://user-images.githubusercontent.com/57263404/227305233-2e79b68e-9803-41b1-9bd5-21f818e4dc92.png)
+![image](./images/cloudwatch.png)
 
 Another Good QC point is to check if your Endpoint is marked as “In-Service” in the Endpoint dashboard. 
 
-![image](https://user-images.githubusercontent.com/57263404/227305318-666ad257-c20b-4944-8b2f-783d7e6c39da.png)
+![image](./images/endpoint_management.png)
 
 ## Setting up Lambda Function to Process API Requests
 AWS Lambda functions prevent us from setting up dedicated servers for monitoring requests and executing small pieces of code like formatting and endpoint invocations. There are significant benefits to this, like only paying for the computer when the functions are triggered instead of a dedicated server which will bill us a reserved or on-demand cost.
@@ -139,27 +139,27 @@ The steps to build the lambda function for this particular module are discussed 
 
 Configuring a REST API will allow us to send HTTP protocol requests to our SageMaker endpoint. The following steps outline how to achieve this using AWS API Gateway.
 
-![image](https://user-images.githubusercontent.com/57263404/227305541-850afaeb-e558-4dc0-8688-9130225b8a5a.png)
+![image](./images/RESTdiagram.png)
 
 1. Navigate to API Gateway and select “Build” from the REST API section.
 
 2. Select REST, New API, and fill the API settings section with your name and endpoint type. Once complete, click Create.
 
-![image](https://user-images.githubusercontent.com/57263404/227305623-dec85d49-3c0f-4827-bb71-60d82c3aa973.png)
+![image](./images/RESTConfig.png)
 
 3. Go to the Actions dropdown and select Create Resource. Once complete, click Create Resource.
 
-![image](https://user-images.githubusercontent.com/57263404/227305681-f3c516fc-f788-4619-8786-b4af39f3d30c.png)
+![image](./images/child_resource.png)
 
 4. Go to the Actions dropdown and select Create Method. Select POST. Retrieve the name of the lambda function that you configured in the previous section and provide the same region as the rest of your resources.
 
-![image](https://user-images.githubusercontent.com/57263404/227305747-7bf0bde2-4b62-4e25-a0ae-948d95891269.png)
+![image](./images/POST_Request.png)
 
 Upon creation of your gateway, you will be prompted with a diagram of your API architecture.
 
 5. You can deploy the API by clicking on the Actions tab and selecting the Deploy API option. This will provide you with a link that you can use to send Post requests to your Model endpoint.
 
-![image](https://user-images.githubusercontent.com/57263404/227305815-691f1762-f475-41be-a817-92c0e2d55573.png)
+![image](./images/InvokeURL.png)
 
 ## Testing your new API
 
@@ -169,7 +169,7 @@ We can use Postman to create REST API requests to test our new API.
 
 Create a new test in Postman, paste the link you created from your REST API, select Body as the input type and POST as the request type, and provide the input data.
 
-![image](https://user-images.githubusercontent.com/57263404/227305935-74f81d3d-828d-4abc-9449-2e023f5ecab6.png)
+![image](./images/Postman.png)
 
 If you’ve completed all of the steps in this module, you should get a “True” response from your API.
 
