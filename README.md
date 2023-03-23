@@ -172,7 +172,9 @@ If you’ve completed all of the steps in this tutorial, you should get a “Tru
 ## Conclusion and Discussion
 Congratulations! You have built a custom MLOps pipeline on SageMaker with oneAPI hardware-accelerated libraries. Using the information in this tutorial, you can build end-to-end machine-learning pipelines in SageMaker and leverage hardware-optimized machine-learning libraries like daal4py.
 
-In future articles, we intend to release code and walkthroughs of computer vision and natural language processing hardware-optimized SageMaker pipelines.
+Our goal with Intel Cloud Optimization Modules is to help developers enhance the performance and scalability of their applications with intel software and hardware. With the increasing demand for high-performance cloud applications, it is crucial for developers to stay informed and utilize the latest technologies and tools available to them.
+
+The instructions above were sourced from this Optimization Module's associated Medium articles (linked Below)
 
 ### Associated Medium Articles
 - [Guide to Building AWS Lambda Functions from ECR Images to Manage SageMaker Inference Endpoints](https://medium.com/@eduand-alvarez/guide-to-building-aws-lambda-functions-from-ecr-images-to-manage-sagemaker-inference-endpoints-4980a9b92290)
