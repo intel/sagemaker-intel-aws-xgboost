@@ -71,8 +71,13 @@ def get_pipeline(
     model_package_group_name="CustomerChurnPackageGroup",  # Choose any name
     pipeline_name="",  # You can find your pipeline name in the Studio UI (project -> Pipelines -> name)
     base_job_prefix="CustomerChurn",  # Choose any name
+<<<<<<< HEAD
     processing_instance_type="ml.m5.xlarge",
     training_instance_type="ml.m5.xlarge",
+=======
+    processing_instance_type="ml.m5d.large",
+    training_instance_type="ml.m5d.large",
+>>>>>>> 000c87f2c8c82a26ab8847ea54a32e77f8858121
 ):
     """Gets a SageMaker ML Pipeline instance working with on CustomerChurn data.
     Args:
@@ -217,8 +222,13 @@ def get_pipeline(
         model_data=step_train.properties.ModelArtifacts.S3ModelArtifacts,
         content_types=["text/csv"],
         response_types=["text/csv"],
+<<<<<<< HEAD
         inference_instances=["ml.t2.medium", "ml.m5.large"],
         transform_instances=["ml.m5.large"],
+=======
+        inference_instances=["ml.m5d.large"],
+        transform_instances=["ml.m5d.large"],
+>>>>>>> 000c87f2c8c82a26ab8847ea54a32e77f8858121
         model_package_group_name=model_package_group_name,
         approval_status=model_approval_status,
         model_metrics=model_metrics,
